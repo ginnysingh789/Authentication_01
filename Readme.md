@@ -1,6 +1,6 @@
 # Authentication API
 
-This project is a Node.js authentication API built with Express, MongoDB, and Zod. It offers essential authentication features including -
+This project is a Node.js authentication API built with Express, MongoDB, and Zod. It offers essential authentication features including 
 
 ## Features
 
