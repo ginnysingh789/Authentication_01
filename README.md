@@ -1,29 +1,44 @@
-```markdown
 # Authentication API
 
-This is a robust Node.js authentication API built using Express, MongoDB, and Zod. It provides essential features for secure user management, with all data inputs validated for integrity.
+A robust Node.js authentication API. Built with Express, MongoDB, and Zod, it provides secure, validated endpoints for core user authentication and management.
 
 ## Features
+-   **Signup:** Zod-validated user registration; checks for existing users.
+-   **Sign In:** Authenticates credentials, generates JSON Web Tokens (JWT).
+-   **Get Data:** JWT-protected endpoint to retrieve all user records.
+-   **Reset Password:** Secure password updates, Zod-validated.
+-   **Schema Validation:** Zod ensures data integrity across all inputs.
 
--   **User Signup:** Register new users with strong Zod validation, ensuring uniqueness and data integrity before storage.
--   **User Sign-in:** Authenticate user credentials and issue JSON Web Tokens (JWT) upon successful login for secure session management.
--   **Protected Data Access:** Retrieve all user data stored in MongoDB, accessible only via a valid JWT, demonstrating secured endpoint functionality.
--   **Password Reset:** Allows users to securely update their passwords, including validation of reset data using Zod.
+## Installation
+1.  Clone the repository: `git clone <repository-url>`
+2.  Navigate into the directory: `cd authentication-api`
+3.  Install dependencies: `npm install`
+4.  Configure `MONGO_URI` and `JWT_SECRET` environment variables.
+5.  Start the server: `node index.js`
 
-## Technologies Used
-
--   Node.js
--   Express.js
--   MongoDB (via Mongoose ODM)
--   JSON Web Token (JWT)
--   Zod (for schema validation)
-
-## Setup and Run
-
-1.  Clone this repository.
-2.  Install dependencies: `npm install`
-3.  Ensure your MongoDB connection string is correctly configured in `db.js`.
-4.  Start the server: `node index.js`
-
-The API will be running on `http://localhost:3000`.
+## Usage
+**Sign Up:**
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "securepassword"}' http://localhost:3000/sign-up
 ```
+
+**Sign In:**
+```bash
+curl -X GET -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "securepassword"}' http://localhost:3000/sign-in
+```
+
+**Get Data:**
+```bash
+curl -X GET -H "Authorization: Bearer <your-jwt-token>" http://localhost:3000/getData
+```
+
+**Reset Password:**
+```bash
+curl -X PUT -H "Content-Type: application/json" -d '{"email": "user@example.com", "currentpassword": "oldpassword", "newpassword": "newsecurepassword"}' http://localhost:3000/rest-password
+```
+
+## Contributing
+Fork the repository, create a feature branch, and submit pull requests.
+
+## License
+ISC License.
